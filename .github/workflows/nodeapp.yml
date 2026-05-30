@@ -1,0 +1,25 @@
+name: NODE APP TEST
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  backend-check:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Get code from GitHub
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Check server file syntax
+        run: node -c index.js
